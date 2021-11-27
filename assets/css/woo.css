@@ -1,0 +1,81 @@
+/* Woocommerce */
+
+.woocommerce-mini-cart {
+  border-radius: 0;
+}
+.woocommerce-mini-cart ul li a {
+  color: #000;
+}
+
+.woocommerce-mini-cart img {
+  width: 60px;
+  height: auto;
+  border: 1px solid #ddd;
+  margin: 9px 0px;
+  border-radius: 10px;
+}
+
+.woocommerce-mini-cart .items-action p a {
+  color: #f00;
+  font-size: 23px;
+  border: 1px solid #f00;
+  border-radius: 100px;
+  display: block;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  text-decoration: none;
+}
+.woocommerce-mini-cart .item-quantity span.quantity {
+  font-size: 14px;
+  font-weight: 800;
+  display: block;
+  font-family: "Poppins";
+  text-align: right;
+  color: #555;
+}
+
+.woocommerce-mini-cart .item-image a {
+  color: #000;
+  font-weight: 700;
+}
+.woocommerce-mini-cart .item-title a h2 {
+  font-size: 14px;
+  margin: 0;
+  color: #1b00ff;
+  text-transform: capitalize;
+  font-family: "Poppins";
+  font-weight: 600;
+}
+
+.modal-minicart h5 {
+  font-size: 20px;
+  color: #000;
+  text-transform: uppercase;
+  font-family: "Poppins";
+  font-weight: 700;
+}
+
+.woocommerce-mini-cart__total.total {
+  text-align: center;
+  font-size: 26px;
+  font-family: "Poppins";
+  min-height: 70px;
+  border-bottom: 1px solid #ddd;
+}
+.woocommerce-mini-cart__buttons.buttons {
+  text-align: center;
+  min-height: 70px;
+  padding: 35px 0 20px 0;
+}
+.woocommerce-mini-cart__buttons.buttons a {
+  border: 3px solid #000;
+  font-size: 20px;
+  color: #000;
+  margin-right: 10px;
+  padding: 9px 30px;
+  font-family: "Poppins";
+  font-weight: 700;
+  border-radius: 30px;
+  text-decoration: none;
+}

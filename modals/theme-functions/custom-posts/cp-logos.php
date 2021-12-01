@@ -12,7 +12,7 @@ function cp_clients_logo()
         'label'               => __('clientslogo', 'wp-bootstrap-starter'),
         'description'         => __('Custom Post Description', 'wp-bootstrap-starter'),
         'labels'              => $labels,
-        'supports'            => array('title', 'editor', 'excerpt', 'author', 'thumbnail', 'custom-fields'),
+        'supports'            => array('title', 'editor', 'thumbnail', 'custom-fields'),
         'taxonomies'          => array(),
         'public'      => true,
         'has_archive' => true,

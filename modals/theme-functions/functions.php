@@ -65,6 +65,7 @@ include 'woo-functions.php';
 include 'shortcodes/social-contacts.php';
 
 // Custom Posts
+include 'custom-posts/cp-templates.php';
 include 'custom-posts/cp-testimonials.php';
 include 'custom-posts/cp-logos.php';
 

@@ -27,7 +27,8 @@
               duration: 4000,
               easing: "swing",
               step: function (now) {
-                $(this).text(Math.ceil(now));
+                now = Number(Math.ceil(now)).toLocaleString('en');
+                                $(this).text(now);
               },
             }
           );

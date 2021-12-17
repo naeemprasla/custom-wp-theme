@@ -18,7 +18,8 @@ function custom_theme_scripts()
         wp_enqueue_style('aos-animate-css', 'https://unpkg.com/aos@2.3.1/dist/aos.css');
     }
     if ($enable_fontawesome == 1) {
-        wp_enqueue_style('faicons-css',  'https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css');
+        wp_enqueue_style('faicons-v5-css',  'https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css');
+        //wp_enqueue_style('faicons-v6-css',  'https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css'); 
     }
 
 

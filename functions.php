@@ -104,10 +104,10 @@ add_filter('use_widgets_block_editor', '__return_false');
 
 
 /** Tracking Codes  */
-require get_template_directory() . '/modals/theme-functions/tracking.php';
+require get_template_directory() . '/modals/tracking.php';
 
 /* Theme Functions  */
-require get_template_directory() . '/modals/theme-functions/functions.php';
+require get_template_directory() . '/modals/functions.php';
 
 /* Enaable Bootstrap On Navbar  */
-require get_template_directory() . '/modals/theme-functions/wp_bootstrap_navwalker.php';
+require get_template_directory() . '/modals/wp_bootstrap_navwalker.php';

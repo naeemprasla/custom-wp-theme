@@ -184,21 +184,6 @@ function vcsite_settings_js_scripts_customize_register($wp_customize)
         )
     );
 
-    $wp_customize->add_setting('enable_aos', array('default' => '1'));
-
-    $wp_customize->add_control(
-        new WP_Customize_Control(
-            $wp_customize,
-            'enable_aos',
-            array(
-                'label'     => __('Enable AOS CDN', 'vc-site-settings'),
-                'description' => __('Get Value by get_theme_mod(\'enable_aos\');', 'vc-site-settings'),
-                'section'   => 'vcsite_settings_jsscript_option',
-                'settings'  => 'enable_aos',
-                'type'      => 'checkbox',
-            )
-        )
-    );
     $wp_customize->add_setting('enable_fontawesome', array('default' => '1'));
 
     $wp_customize->add_control(
@@ -210,6 +195,21 @@ function vcsite_settings_js_scripts_customize_register($wp_customize)
                 'description' => __('Get Value by get_theme_mod(\'enable_fontawesome\');', 'vc-site-settings'),
                 'section'   => 'vcsite_settings_jsscript_option',
                 'settings'  => 'enable_fontawesome',
+                'type'      => 'checkbox',
+            )
+        )
+    );
+    $wp_customize->add_setting('enable_fontawesome_six', array('default' => '1'));
+
+    $wp_customize->add_control(
+        new WP_Customize_Control(
+            $wp_customize,
+            'enable_fontawesome_six',
+            array(
+                'label'     => __('Enable Font Awesome 6', 'vc-site-settings'),
+                'description' => __('Get Value by get_theme_mod(\'enable_fontawesome_six\');', 'vc-site-settings'),
+                'section'   => 'vcsite_settings_jsscript_option',
+                'settings'  => 'enable_fontawesome_six',
                 'type'      => 'checkbox',
             )
         )

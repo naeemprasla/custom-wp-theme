@@ -25,8 +25,8 @@ add_action( 'init', 'cp_testimonials');
 
 
 $labels = array(
-    'name'                => _x('TS Categories', 'Post Type General Name', 'wp-bootstrap-starter'),
-    'singular_name'       => _x('TS Category', 'Post Type Singular Name', 'wp-bootstrap-starter'),
+    'name'                => _x('Categories', 'Post Type General Name', 'wp-bootstrap-starter'),
+    'singular_name'       => _x('Category', 'Post Type Singular Name', 'wp-bootstrap-starter'),
 
 );
 register_taxonomy(

@@ -28,7 +28,12 @@ if (!function_exists('custom_theme_setup_mode')) {
 		if (apply_filters('hello_elementor_register_menus', $hook_result)) {
 
 			//Main Nav
-			register_nav_menus(array('menu-1' => __('Main Navigation', 'hello-elementor')));
+			register_nav_menus(
+				array(
+					'menu-1' => __('Main Navigation', 'hello-elementor'),
+					'mobile-1' => __('Mobile Navigation', 'hello-elementor')
+				)
+			);
 		}
 
 		$hook_result = apply_filters_deprecated('elementor_hello_theme_add_theme_support', [true], '2.0', 'hello_elementor_add_theme_support');

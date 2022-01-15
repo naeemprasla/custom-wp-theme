@@ -1,4 +1,5 @@
 (function ($) {
+  "use strict";
   //Check OS
   if (navigator.userAgent.indexOf("Mac OS X") != -1) {
     $("body").addClass("mac");
@@ -10,6 +11,10 @@
   $("a.scroll_top").click(function (e) {
     //e.preventDefault();
     $("html,body").scrollTop();
+  });
+
+  $(window).on("load", function () {
+    $(".loader").fadeOut();
   });
 
   // Jquery COunter
@@ -27,8 +32,8 @@
               duration: 4000,
               easing: "swing",
               step: function (now) {
-                now = Number(Math.ceil(now)).toLocaleString('en');
-                                $(this).text(now);
+                now = Number(Math.ceil(now)).toLocaleString("en");
+                $(this).text(now);
               },
             }
           );
@@ -45,7 +50,33 @@
     else sticky.removeClass("fixed");
   });
 
+  //Rellax
+  var rellax = new Rellax(".rellax", {
+    speed: 0.5,
+  });
 
+  SmoothScroll({
+    // Scrolling Core
+    frameRate: 300, // [Hz]
+    animationTime: 1000, // [ms]
+    stepSize: 70, // [px]
 
-  
+    // Pulse (less tweakable)
+    // ratio of "tail" to "acceleration"
+    pulseAlgorithm: true,
+    pulseScale: 4,
+    pulseNormalize: 1,
+
+    // Acceleration
+    accelerationDelta: 50, // 50
+    accelerationMax: 3, // 3
+
+    // Keyboard Settings
+    keyboardSupport: true, // option
+    arrowScroll: 50, // [px]
+
+    // Other
+    fixedBackground: true,
+    excluded: "",
+  });
 })(jQuery);

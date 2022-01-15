@@ -30,26 +30,31 @@ $gmaplink = get_theme_mod('map_url_setting');
 $bodyclass = get_post_meta(get_the_ID(), 'custom_body_classboxclasses', true);
 
 ?>
+<div class="loader">
+    <div class="loader-in">
+        <div class="spinner"></div>
+    </div>
+</div>
 <div class="site-wrapper <?php echo  $bodyclass;  ?>">
     <?php if (get_theme_mod('topbar_setting') == 'true') : ?>
         <section class="topbar">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-12 header-left-widget">
+            <div class="container-fluid px-5">
+                <div class="row align-items-center">
+                    <div class="col-xl-5 col-lg-5 col-md-12 col-12 header-left-widget">
                         <?php if (is_active_sidebar('header-1')) { ?>
                             <div class="wgt-header-wrapper">
                                 <?php dynamic_sidebar('header-1'); ?>
                             </div>
                         <?php } ?>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-12 header-center-widget">
+                    <div class="col-xl-2 col-lg-2 col-md-12 col-12 header-center-widget">
                         <?php if (is_active_sidebar('header-2')) { ?>
                             <div class="wgt-header-wrapper">
                                 <?php dynamic_sidebar('header-2'); ?>
                             </div>
                         <?php } ?>
                     </div>
-                    <div class="col-xl-4 col-lg-4 col-md-12 col-12 header-right-widget">
+                    <div class="col-xl-5 col-lg-5 col-md-12 col-12 header-right-widget">
                         <?php if (is_active_sidebar('header-3')) { ?>
                             <div class="wgt-header-wrapper">
                                 <?php dynamic_sidebar('header-3'); ?>
@@ -73,12 +78,12 @@ $bodyclass = get_post_meta(get_the_ID(), 'custom_body_classboxclasses', true);
                 }
                 ?>
                 <button class="navbar-toggler border " type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="fa fa-bars p-2"></span>
+                    <span class="fa fa-bars"></span>
                 </button>
                 <?php if (has_nav_menu('menu-1')) :
                     wp_nav_menu(
                         array(
-                            'theme_location'    => 'menu-1',
+                            'theme_location'    => 'mobile-1',
                             'container'  => 'div',
                             'container_id'   => 'main-nav',
                             'container_class' => 'collapse navbar-collapse justify-content-end',

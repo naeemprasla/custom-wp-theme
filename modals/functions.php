@@ -27,10 +27,10 @@ function custom_theme_scripts()
 
     wp_enqueue_script('jquery-js', 'https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js', array(), '3.5.1', true); // Jquery
     wp_enqueue_script('popper-js', 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js', array(), '1.16.0', true); // Popper
-    wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js', array(), '1.0.0', true); // Bootstrap
+    wp_enqueue_script('bootstrap-js', 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js', array(), '1.0.0', true); // Bootstrap
     wp_enqueue_script('smoothscroll-js', 'https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js', array(), '1.4.10', true); // Smooth Scroll
     
-    wp_enqueue_script('rellax-js', get_template_directory_uri() . '/assets/js/app.js', array(), '1.1.2', true); // Rellax JS
+    wp_enqueue_script('rellax-js',  'https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js', array(), '1.1.2', true); // Rellax JS
 
     if ($enable_slick == 1) {
         wp_enqueue_script('slick-js', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', array(), '1.8.1', true);
@@ -63,7 +63,6 @@ include 'custom-posts/cp-logos.php';
 
 //WPB Widgets
 include 'vc_widgets/wpb-counterbox.php';
-
 
 //WPB Sidebars
 include 'sidebars/contact-info.php';

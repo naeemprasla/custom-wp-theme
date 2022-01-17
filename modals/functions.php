@@ -35,6 +35,7 @@ function custom_theme_scripts()
     if ($enable_slick == 1) {
         wp_enqueue_script('slick-js', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', array(), '1.8.1', true);
     }
+     wp_enqueue_script('smoothscroll-js', 'https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js', array(), '1.4.10', true); // Smooth Scroll
     
     wp_enqueue_script('app-js', get_template_directory_uri() . '/assets/js/app.js', array(), '1.0.0', true); // Main JS
 }

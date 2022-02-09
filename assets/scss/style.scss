@@ -1,11 +1,6 @@
-@import "_mixins"; // Functions
-@import "_responsive"; // Responsive
-@import "_fonts"; //Fonts
-@import "_theme"; //Theme
-@import "_forms"; // Forms
-@import "_animations"; // Animations
-@import "_main"; // Main
-@import "_woocommerce"; // Wocommerce
+@import 'colors';
+@import 'mixins';
+@import 'reset';
+@import 'main';
+@import 'responsive';
 
-
- 

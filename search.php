@@ -1,52 +1,53 @@
 <?php
-
 /**
- * The template for displaying search results.
+ * The template for displaying search results pages
  *
- * @package HelloElementor
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
+ *
+ * @package WP_Customs_Theme
  */
 
-if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly.
-}
+get_header();
 ?>
-<main class="site-main" role="main">
-	<?php if (apply_filters('hello_elementor_page_title', true)) : ?>
-		<header class="page-header">
-			<h1 class="entry-title">
-				<?php esc_html_e('Search results for: ', 'hello-elementor'); ?>
-				<span><?php echo get_search_query(); ?></span>
-			</h1>
-		</header>
-	<?php endif; ?>
-	<div class="page-content">
-		<?php if (have_posts()) : ?>
-			<div class="search-page">
-				<?php
-				while (have_posts()) :
-					the_post();
-					printf('<h2><a href="%s">%s</a></h2>', esc_url(get_permalink()), esc_html(get_the_title()));
-					the_post_thumbnail();
-					the_excerpt();
-				endwhile;
-				?>
-			</div>
-		<?php else : ?>
-			<p><?php esc_html_e('It seems we can\'t find what you\'re looking for.', 'hello-elementor'); ?></p>
-		<?php endif; ?>
-	</div>
 
-	<?php wp_link_pages(); ?>
+	<main id="primary" class="site-main">
 
-	<?php
-	global $wp_query;
-	if ($wp_query->max_num_pages > 1) :
-	?>
-		<nav class="pagination" role="navigation">
-			<?php /* Translators: HTML arrow */ ?>
-			<div class="nav-previous"><?php next_posts_link(sprintf(__('%s older', 'hello-elementor'), '<span class="meta-nav">&larr;</span>')); ?></div>
-			<?php /* Translators: HTML arrow */ ?>
-			<div class="nav-next"><?php previous_posts_link(sprintf(__('newer %s', 'hello-elementor'), '<span class="meta-nav">&rarr;</span>')); ?></div>
-		</nav>
-	<?php endif; ?>
-</main>
+		<?php if ( have_posts() ) : ?>
+
+			<header class="page-header">
+				<h1 class="page-title">
+					<?php
+					/* translators: %s: search query. */
+					printf( esc_html__( 'Search Results for: %s', 'wp-customs-theme' ), '<span>' . get_search_query() . '</span>' );
+					?>
+				</h1>
+			</header><!-- .page-header -->
+
+			<?php
+			/* Start the Loop */
+			while ( have_posts() ) :
+				the_post();
+
+				/**
+				 * Run the loop for the search to output the results.
+				 * If you want to overload this in a child theme then include a file
+				 * called content-search.php and that will be used instead.
+				 */
+				get_template_part( 'template-parts/content', 'search' );
+
+			endwhile;
+
+			the_posts_navigation();
+
+		else :
+
+			get_template_part( 'template-parts/content', 'none' );
+
+		endif;
+		?>
+
+	</main><!-- #main -->
+
+<?php
+get_sidebar();
+get_footer();

@@ -1,31 +1,59 @@
 <?php
-
 /**
- * The template for displaying the header
+ * The header for our theme
  *
- * This is the template that displays all of the <head> section, opens the <body> tag and adds the site's header.
+ * This is the template that displays all of the <head> section and everything up until <div id="content">
  *
- * @package HelloElementor
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package WP_Customs_Theme
  */
 
-if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly.
-}
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
-
 <head>
-	<meta charset="<?php bloginfo('charset'); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=0.80 shrink-to-fit=no">
-	<meta name="baseurl" content="<?php echo site_url(); ?>" />
-	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
+<?php wp_body_open(); ?>
+<div id="page" class="site">
+	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'wp-customs-theme' ); ?></a>
 
-	<?php
+	<header id="masthead" class="site-header">
+		<div class="site-branding">
+			<?php
+			the_custom_logo();
+			if ( is_front_page() && is_home() ) :
+				?>
+				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<?php
+			else :
+				?>
+				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+				<?php
+			endif;
+			$wp_customs_theme_description = get_bloginfo( 'description', 'display' );
+			if ( $wp_customs_theme_description || is_customize_preview() ) :
+				?>
+				<p class="site-description"><?php echo $wp_customs_theme_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+			<?php endif; ?>
+		</div><!-- .site-branding -->
 
-
-	get_template_part('template-parts/header');
+		<nav id="site-navigation" class="main-navigation">
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'wp-customs-theme' ); ?></button>
+			<?php
+			wp_nav_menu(
+				array(
+					'theme_location' => 'menu-1',
+					'menu_id'        => 'primary-menu',
+				)
+			);
+			?>
+		</nav><!-- #site-navigation -->
+	</header><!-- #masthead -->

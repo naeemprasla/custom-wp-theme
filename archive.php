@@ -1,51 +1,51 @@
 <?php
 /**
- * The template for displaying archive pages.
+ * The template for displaying archive pages
  *
- * @package HelloElementor
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
+ *
+ * @package WP_Customs_Theme
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}
+get_header();
 ?>
-<main class="site-main" role="main">
 
-	<?php if ( apply_filters( 'hello_elementor_page_title', true ) ) : ?>
-		<header class="page-header">
-			<?php
-			the_archive_title( '<h1 class="entry-title">', '</h1>' );
-			the_archive_description( '<p class="archive-description">', '</p>' );
-			?>
-		</header>
-	<?php endif; ?>
-	<div class="page-content">
-		<?php
-		while ( have_posts() ) {
-			the_post();
-			$post_link = get_permalink();
-			?>
-			<article class="post">
+	<main id="primary" class="site-main">
+
+		<?php if ( have_posts() ) : ?>
+
+			<header class="page-header">
 				<?php
-				printf( '<h2 class="%s"><a href="%s">%s</a></h2>', 'entry-title', esc_url( $post_link ), esc_html( get_the_title() ) );
-				printf( '<a href="%s">%s</a>', esc_url( $post_link ), get_the_post_thumbnail( $post, 'large' ) );
-				the_excerpt();
+				the_archive_title( '<h1 class="page-title">', '</h1>' );
+				the_archive_description( '<div class="archive-description">', '</div>' );
 				?>
-			</article>
-		<?php } ?>
-	</div>
+			</header><!-- .page-header -->
 
-	<?php wp_link_pages(); ?>
+			<?php
+			/* Start the Loop */
+			while ( have_posts() ) :
+				the_post();
 
-	<?php
-	global $wp_query;
-	if ( $wp_query->max_num_pages > 1 ) :
+				/*
+				 * Include the Post-Type-specific template for the content.
+				 * If you want to override this in a child theme, then include a file
+				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
+				 */
+				get_template_part( 'template-parts/content', get_post_type() );
+
+			endwhile;
+
+			the_posts_navigation();
+
+		else :
+
+			get_template_part( 'template-parts/content', 'none' );
+
+		endif;
 		?>
-		<nav class="pagination" role="navigation">
-			<?php /* Translators: HTML arrow */ ?>
-			<div class="nav-previous"><?php next_posts_link( sprintf( __( '%s older', 'hello-elementor' ), '<span class="meta-nav">&larr;</span>' ) ); ?></div>
-			<?php /* Translators: HTML arrow */ ?>
-			<div class="nav-next"><?php previous_posts_link( sprintf( __( 'newer %s', 'hello-elementor' ), '<span class="meta-nav">&rarr;</span>' ) ); ?></div>
-		</nav>
-	<?php endif; ?>
-</main>
+
+	</main><!-- #main -->
+
+<?php
+get_sidebar();
+get_footer();

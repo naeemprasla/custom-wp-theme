@@ -1,42 +1,40 @@
 <?php
-
 /**
- * The template for displaying singular post-types: posts, pages and user-defined custom post types.
+ * The template for displaying all single posts
  *
- * @package HelloElementor
+ * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
+ *
+ * @package WP_Customs_Theme
  */
 
-if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly.
-}
-?>
-<?php
-while (have_posts()) : the_post();
+get_header();
 ?>
 
-	<main <?php post_class('site-main'); ?> role="main">
+	<main id="primary" class="site-main">
 
-		<div class="page-content">
-			<div class="container">
-				<div class="row">
-					<div class="col-12 p-0">
-						<?php the_content(); ?>
-					</div>
-				</div>
-			</div>
+		<?php
+		while ( have_posts() ) :
+			the_post();
 
-			<?php if (!is_front_page()) : ?>
-				<div class="post-tags">
-					<?php the_tags('<span class="tag-links">' . __('Tagged ', 'hello-elementor'), null, '</span>'); ?>
-				</div>
-				<?php wp_link_pages(); ?>
-			<?php endif; ?>
+			get_template_part( 'template-parts/content', get_post_type() );
 
+			the_post_navigation(
+				array(
+					'prev_text' => '<span class="nav-subtitle">' . esc_html__( 'Previous:', 'wp-customs-theme' ) . '</span> <span class="nav-title">%title</span>',
+					'next_text' => '<span class="nav-subtitle">' . esc_html__( 'Next:', 'wp-customs-theme' ) . '</span> <span class="nav-title">%title</span>',
+				)
+			);
 
-		</div>
+			// If comments are open or we have at least one comment, load up the comment template.
+			if ( comments_open() || get_comments_number() ) :
+				comments_template();
+			endif;
 
-		<?php comments_template(); ?>
-	</main>
+		endwhile; // End of the loop.
+		?>
+
+	</main><!-- #main -->
 
 <?php
-endwhile;
+get_sidebar();
+get_footer();

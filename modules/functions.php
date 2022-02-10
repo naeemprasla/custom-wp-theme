@@ -36,13 +36,27 @@ function custom_theme_scripts()
         wp_enqueue_script('slick-js', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', array(), '1.8.1', true);
     }
     
-    
     wp_enqueue_script('app-js', get_template_directory_uri() . '/assets/js/app.js', array(), '1.0.0', true); // Main JS
 }
 
 add_action('wp_enqueue_scripts', 'custom_theme_scripts');
 
+//Disbale Core Upadates
+function remove_core_updates()
+{
+	global $wp_version;
+	return (object) array('last_checked' => time(), 'version_checked' => $wp_version,);
+}
+add_filter('pre_site_transient_update_core', 'remove_core_updates');
+add_filter('pre_site_transient_update_plugins', 'remove_core_updates');
+add_filter('pre_site_transient_update_themes', 'remove_core_updates');
 
+
+// Disables the block editor from managing widgets in the Gutenberg plugin.
+add_filter('gutenberg_use_widgets_block_editor', '__return_false', 100);
+add_filter('use_block_editor_for_post', '__return_false', 10);
+// Disables the block editor from managing widgets. renamed from wp_use_widgets_block_editor
+add_filter('use_widgets_block_editor', '__return_false');
 
 
 // Widgets
@@ -64,6 +78,10 @@ include 'custom-posts/cp-logos.php';
 
 //WPB Widgets
 include 'vc_widgets/wpb-counterbox.php';
+include 'vc_widgets/wpb-buttonwithicon.php';
+include 'vc_widgets/wpb-services.php';
+include 'vc_widgets/wpb-blogs.php';
+
 
 //WPB Sidebars
 include 'sidebars/contact-info.php';

@@ -42,24 +42,17 @@ add_action( 'after_setup_theme', 'wp_customs_theme_woocommerce_setup' );
  *
  * @return void
  */
-function wp_customs_theme_woocommerce_scripts() {
-	wp_enqueue_style( 'wp-customs-theme-woocommerce-style', get_template_directory_uri() . '/woocommerce.css', array(), _S_VERSION );
 
-	$font_path   = WC()->plugin_url() . '/assets/fonts/';
-	$inline_font = '@font-face {
-			font-family: "star";
-			src: url("' . $font_path . 'star.eot");
-			src: url("' . $font_path . 'star.eot?#iefix") format("embedded-opentype"),
-				url("' . $font_path . 'star.woff") format("woff"),
-				url("' . $font_path . 'star.ttf") format("truetype"),
-				url("' . $font_path . 'star.svg#star") format("svg");
-			font-weight: normal;
-			font-style: normal;
-		}';
-
-	wp_add_inline_style( 'wp-customs-theme-woocommerce-style', $inline_font );
+// Remove each style one by one
+add_filter( 'woocommerce_enqueue_styles', 'woo_dequeue_styles' );
+function woo_dequeue_styles( $enqueue_styles ) {
+	unset( $enqueue_styles['woocommerce-general'] ); // Remove the gloss
+	unset( $enqueue_styles['woocommerce-layout'] ); // Remove the layout
+	unset( $enqueue_styles['woocommerce-smallscreen'] ); // Remove the smallscreen optimisation
+	return $enqueue_styles;
 }
-add_action( 'wp_enqueue_scripts', 'wp_customs_theme_woocommerce_scripts' );
+// Or just remove them all in one line
+add_filter( 'woocommerce_enqueue_styles', '__return_false' );
 
 /**
  * Disable the default WooCommerce stylesheet.

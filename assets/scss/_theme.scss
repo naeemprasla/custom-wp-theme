@@ -4,32 +4,65 @@ $text_font: "Poppins", sans-serif;
 
 
 $breakpoints: 
-    "sm" "480", 
-    "md" "768",
-    "lg" "1170",
-    "xl" "1366";
+    "sm" "480px", 
+    "md" "768px",
+    "lg" "1170px",
+    "xl" "1366px";
 
 
-$theme-colors: "black" #000, "gray" #a2a2a2, "white" #fff;
+$theme-colors: 
+"black" #000, 
+"gray" #a2a2a2, 
+"white" #fff, 
+"link" #000;
 
 /* Colors */
 @each $clrname, $hexcode in $theme-colors {
-  .text-#{$clrname} {
-    color: $hexcode;
+  @if $clrname == link {
+    a{
+      color: $hexcode;
+    }
+  } @else{
+    .text-#{$clrname} {
+      color: $hexcode;
+    }
+    .bg-#{$clrname} {
+      color: $hexcode;
+    }
   }
-  .bg-#{$clrname} {
-    color: $hexcode;
-  }
+  
 }
 /* Colors END */
 
 $heading-sizes: "1" "100", "2" "85", "3" "70", "4" "45", "5" "24", "6" "18";
 /* Headings */
-@each $resp, $break in $breakpoints {
+$headings : (
+  1366px: (
+    "1" "100", "2" "85", "3" "70", "4" "45", "5" "24", "6" "18"
+  ),
+  1170px: (
+    "1" "80", "2" "65", "3" "50", "4" "35", "5" "20", "6" "16"
+  ),
+  768px: (
+    "1" "100", "2" "85", "3" "70", "4" "45", "5" "24", "6" "18"
+  ),
+  480px: (
+    "1" "100", "2" "85", "3" "70", "4" "45", "5" "24", "6" "18"
+  )
+);
+
+@each $break, $sizes in $headings {
+  @media screen and (max-width: $break) { 
+    @each $h-num, $h-sizes in $sizes {  
       h#{$h-num} {
         font-size: #{$h-sizes}px;
       }
+    }
+  }
 }
+
+
+/* Default */
 @each $h-num, $h-sizes in $heading-sizes {  
   h#{$h-num} {
     font-size: #{$h-sizes}px;
@@ -52,3 +85,5 @@ $paras: "small" "14", "medium" "16", "large" "20", "default" "18";
   }
 }
 /* Paragraph END */
+
+
